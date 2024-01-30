@@ -6,15 +6,15 @@ $(NAME):
 all: $(NAME)
 
 clean:
-	docker rm wordpress mariadb nginx
-	docker rmi srcs-wordpress srcs-mariadb
-	docker volume rm wordpress mariadb
+	docker rm wordpress mariadb nginx adminer
+	docker rmi srcs-wordpress srcs-mariadb srcs-adminer srcs-nginx
+	docker volume rm wordpress mariadb adminer
 
 fclean: clean
-	sudo rm -rf /home/dariocastagnola/data wordpress mariadb
+	sudo rm -rf /home/dariocastagnola/data wordpress mariadb adminer
 	
 
 re: fclean all
 
 
-.PHONY: prepare clean fclean re
+.PHONY: clean fclean re

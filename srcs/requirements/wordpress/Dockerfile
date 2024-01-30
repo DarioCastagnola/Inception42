@@ -2,7 +2,6 @@ FROM debian:bookworm
 
 RUN	apt update && apt upgrade
 RUN	apt install  wget php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer -y
-RUN	adduser --system nginx && addgroup --system nginx
 RUN	mkdir -p /var/www/html
 RUN	wget -P /var/www/html https://wordpress.org/latest.tar.gz
 RUN	cd /var/www/html && tar -xzvf latest.tar.gz

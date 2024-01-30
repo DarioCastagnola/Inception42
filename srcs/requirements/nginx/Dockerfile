@@ -12,7 +12,7 @@ RUN mkdir -p /etc/ssl && \
 RUN mkdir -p /var/www/html
 
 RUN openssl req -x509 -nodes -out "/etc/ssl/inception.crt" -keyout "/etc/ssl/inception.key" -subj "/C=IT/ST=Lazio/L=Rome/O=42/OU=42/CN=dcastagn.42.fr/UID=ades" && \
-    chmod 775 /var/www/html && \
+    chmod -R 775 /var/www/html && \
     chown -R www-data:www-data /var/www/html
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
