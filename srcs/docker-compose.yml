@@ -7,7 +7,7 @@ services:
     build: 
       context: requirements/mariadb
       dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     env_file: .env
     expose:
       - "3306"
@@ -21,7 +21,7 @@ services:
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     env_file: .env
     expose:
       - "9000"
@@ -37,7 +37,7 @@ services:
     container_name: adminer
     build:
       context: ./requirements/bonus/adminer
-    restart: unless-stopped
+    restart: always
     expose:
       - "9000"
     networks:
@@ -77,18 +77,18 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/home/dariocastagnola/data/mariadb"
+      device: "/home/$USER/data/mariadb"
   wordpress:
     name: "wordpress"
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/home/dariocastagnola/data/wordpress"
+      device: "/home/$USER/data/wordpress"
   adminer:
     name: "adminer"
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/home/dariocastagnola/data/adminer"
+      device: "/home/$USER/data/adminer"
