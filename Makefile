@@ -1,7 +1,7 @@
 NAME = inception
 
 $(NAME):
-	@if [ ! -f .env ]; then \
+	@if [ ! -f srcs/.env ]; then \
 	touch srcs/.env ; \
 	echo DOMAIN_NAME=dcastagn.42.fr >> srcs/.env ; \
 	echo MYSQL_ROOT_PASSWORD=4321 >> srcs/.env ; \
@@ -14,7 +14,7 @@ $(NAME):
 	echo WORDPRESS_USER_EMAIL=dcastagn42@gmail.com >> srcs/.env ; \
 	echo WORDPRESS_USER_PASSWORD=1234 >> srcs/.env ; \
 	echo WORDPRESS_TITLE=summonersrift >> srcs/.env ; \
-	echo MYSQL_DATABASE=stocazzo >> srcs/.env ; \
+	echo MYSQL_DATABASE=mariadb >> srcs/.env ; \
 	fi
 	docker compose -f ./srcs/docker-compose.yml --env-file "./srcs/.env" up
 
