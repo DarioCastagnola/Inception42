@@ -1,4 +1,5 @@
 NAME = inception
+MY_USER = ${USER}
 
 $(NAME):
 	@if [ ! -f srcs/.env ]; then \
@@ -25,8 +26,8 @@ clean:
 	docker rmi srcs-wordpress srcs-mariadb srcs-adminer srcs-nginx
 	docker volume rm wordpress mariadb adminer
 
-fclean: clean
-	sudo rm -rf /home/dariocastagnola/data wordpress mariadb adminer
+fclean: clean 
+	sudo rm -rf /home/${MY_USER}/data
 	
 
 re: fclean all
