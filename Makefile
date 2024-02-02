@@ -18,7 +18,9 @@ $(NAME):
 	echo MYSQL_DATABASE=mariadb >> srcs/.env ; \
 	fi
 	@if [ ! -d /home/${MY_USER}/data ]; then \
-	mkdir -p /home/${MY_USER}/data/{wordpress,adminer,mariadb,nginx} ; \
+	mkdir -p /home/${MY_USER}/data/wordpress ; \
+	mkdir -p /home/${MY_USER}/data/mariadb ; \
+	mkdir -p /home/${MY_USER}/data/adminer ; \
 	fi
 	docker compose -f ./srcs/docker-compose.yml --env-file "./srcs/.env" up
 
