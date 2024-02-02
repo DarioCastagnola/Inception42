@@ -17,14 +17,17 @@ $(NAME):
 	echo WORDPRESS_TITLE=summonersrift >> srcs/.env ; \
 	echo MYSQL_DATABASE=mariadb >> srcs/.env ; \
 	fi
+	@if [ ! -d /home/${MY_USER}/data ]; then \
+	mkdir -p /home/${MY_USER}/data/{wordpress,adminer,mariadb,nginx} ; \
+	fi
 	docker compose -f ./srcs/docker-compose.yml --env-file "./srcs/.env" up
 
 all: $(NAME)
 
 clean:
-	docker rm wordpress mariadb nginx adminer
-	docker rmi srcs-wordpress srcs-mariadb srcs-adminer srcs-nginx
-	docker volume rm wordpress mariadb adminer
+	@docker rm -f wordpress mariadb adminer nginx 2>/dev/null
+	@docker rmi -f srcs-wordpress srcs-mariadb srcs-adminer srcs-nginx 2>/dev/null
+	@docker volume rm -f wordpress mariadb adminer 2>/dev/null
 
 fclean: clean 
 	sudo rm -rf /home/${MY_USER}/data
